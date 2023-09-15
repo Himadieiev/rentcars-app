@@ -1,0 +1,21 @@
+:root {
+  --main-text-color: #121417;
+  --secondary-text-color: rgba(18, 20, 23, 0.5);
+  --third-text-color: #363535;
+  --blue: #3470ff;
+  --white: #fff;
+  --hover-focus-color: #0b44cd;
+  --main-font-family: "Manrope";
+  --secondary-font-family: "Montserrat";
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  color: var(--main-text-color);
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 128px;
+}
