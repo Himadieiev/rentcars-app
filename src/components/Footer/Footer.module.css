@@ -1,0 +1,40 @@
+.footer {
+  background-color: var(--bg-color);
+}
+
+.footerContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.logo {
+  font-family: var(--secondary-font-family);
+  font-size: 15px;
+}
+
+.logoLeft {
+  color: var(--white);
+  font-weight: 900;
+}
+
+.logoRight {
+  color: var(--blue);
+  font-weight: 900;
+}
+
+.rights {
+  font-size: 15px;
+  color: var(--blue);
+}
+
+.rightsText {
+  color: var(--white);
+}
+
+.rightsLink {
+  color: var(--blue);
+}
