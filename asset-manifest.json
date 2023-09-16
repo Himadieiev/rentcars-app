@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/rentcars-app/static/css/main.329b448d.css",
-    "main.js": "/rentcars-app/static/js/main.764ae419.js",
+    "main.css": "/rentcars-app/static/css/main.eb9b6a2f.css",
+    "main.js": "/rentcars-app/static/js/main.081bf487.js",
     "index.html": "/rentcars-app/index.html",
-    "main.329b448d.css.map": "/rentcars-app/static/css/main.329b448d.css.map",
-    "main.764ae419.js.map": "/rentcars-app/static/js/main.764ae419.js.map"
+    "main.eb9b6a2f.css.map": "/rentcars-app/static/css/main.eb9b6a2f.css.map",
+    "main.081bf487.js.map": "/rentcars-app/static/js/main.081bf487.js.map"
   },
   "entrypoints": [
-    "static/css/main.329b448d.css",
-    "static/js/main.764ae419.js"
+    "static/css/main.eb9b6a2f.css",
+    "static/js/main.081bf487.js"
   ]
 }
