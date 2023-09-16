@@ -17,12 +17,18 @@
 }
 
 .logoLeft {
-  color: var(--white);
+  color: var(--blue);
+  font-weight: 900;
+  font-style: italic;
+}
+
+.logoCenter {
+  color: var(--blue);
   font-weight: 900;
 }
 
 .logoRight {
-  color: var(--blue);
+  color: var(--white);
   font-weight: 900;
 }
 

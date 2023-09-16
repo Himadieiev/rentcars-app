@@ -1,0 +1,6 @@
+.carsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px 29px;
+  padding-bottom: 50px;
+}

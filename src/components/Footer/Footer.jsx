@@ -9,7 +9,8 @@ const Footer = () => {
       <div className={`${styles.footerContent} container`}>
         <div className={styles.logo}>
           <NavLink to="/">
-            <span className={styles.logoLeft}>RENTCARs</span>
+            <span className={styles.logoLeft}>RENT </span>
+            <span className={styles.logoCenter}>CARs </span>
             <span className={styles.logoRight}>UA</span>
           </NavLink>
         </div>

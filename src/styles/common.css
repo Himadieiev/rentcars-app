@@ -2,12 +2,15 @@
   --main-text-color: #121417;
   --secondary-text-color: rgba(18, 20, 23, 0.5);
   --third-text-color: #363535;
+  --fourth-text-color: #8a8a89;
   --blue: #3470ff;
   --white: #fff;
   --hover-focus-color: #0b44cd;
   --main-font-family: "Manrope";
   --secondary-font-family: "Montserrat";
   --bg-color: #080808;
+  --second-bg-color: #f7f7fb;
+  --third-bg-color: rgba(18, 20, 23, 0.1);
 }
 
 body {

@@ -1,0 +1,125 @@
+.form {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 18px;
+}
+
+.brandInputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom: 8px;
+  color: var(--fourth-text-color);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+}
+
+.brandInput {
+  width: 224px;
+  padding: 14px 89px 14px 18px;
+  border-radius: 14px;
+  background: var(--second-bg-color);
+}
+
+.brandInput::placeholder {
+  color: var(--main-text-color);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+}
+
+.brandInputBtn {
+  position: relative;
+}
+
+.brandBtnIcon {
+  position: absolute;
+  bottom: 13px;
+  right: 18px;
+}
+
+.priceInputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.priceInput {
+  width: 125px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: var(--second-bg-color);
+}
+
+.priceInput::placeholder {
+  color: var(--main-text-color);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+}
+
+.priceInputBtn {
+  position: relative;
+}
+
+.priceBtnIcon {
+  position: absolute;
+  bottom: 13px;
+  right: 18px;
+}
+
+.maleAgeContainer {
+  display: flex;
+  align-items: flex-end;
+  color: var(--main-text-color);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+}
+
+.fromInputContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.mileageFromInput {
+  width: 160px;
+  padding: 14px 14px 14px 75px;
+  border-radius: 14px 0px 0px 14px;
+  border-right: 1px solid rgba(138, 138, 137, 0.2);
+  background: var(--second-bg-color);
+}
+
+.textFrom {
+  position: absolute;
+  top: 42px;
+  left: 24px;
+}
+
+.toInputContainer {
+  position: relative;
+}
+
+.mileageToInput {
+  width: 160px;
+  padding: 14px 14px 14px 53px;
+  border-radius: 0px 14px 14px 0px;
+  background: var(--second-bg-color);
+}
+
+.textTo {
+  position: absolute;
+  top: 16px;
+  left: 24px;
+}
+
+.searchBtnContainer {
+  height: 48px;
+  width: 136px;
+}

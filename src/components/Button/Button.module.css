@@ -1,0 +1,18 @@
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  color: var(--white);
+  background-color: var(--blue);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.43;
+  border-radius: 12px;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--hover-focus-color);
+}
