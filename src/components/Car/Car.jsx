@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "./Car.module.css";
 import Button from "../Button/Button";
+import Modal from "../Modal/Modal";
 
 const Car = ({ car }) => {
   const {
@@ -17,6 +18,12 @@ const Car = ({ car }) => {
     accessories,
     functionalities,
   } = car;
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen((prevState) => !prevState);
+  };
 
   return (
     <div className={styles.carContainer}>
@@ -68,9 +75,10 @@ const Car = ({ car }) => {
           <span>{functionalities}</span>
         </div>
       </div>
-      <div className={styles.btnContainer}>
+      <div className={styles.btnContainer} onClick={toggleModal}>
         <Button>Learn more</Button>
       </div>
+      {isModalOpen && <Modal toggleModal={toggleModal} car={car} />}
     </div>
   );
 };

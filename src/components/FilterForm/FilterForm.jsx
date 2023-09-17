@@ -64,7 +64,7 @@ const FilterForm = () => {
           </svg>
         </button>
       </div>
-      <div className={styles.maleAgeContainer}>
+      <div className={styles.mileAgeContainer}>
         <div className={styles.fromInputContainer}>
           <label htmlFor="mileage" className={styles.label}>
             Сar mileage / km
