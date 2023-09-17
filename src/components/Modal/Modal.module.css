@@ -30,6 +30,11 @@
   cursor: pointer;
 }
 
+.closeIcon:hover,
+.closeIcon:focus {
+  scale: 1.2;
+}
+
 .imgContainer {
   width: 461px;
   height: 248px;

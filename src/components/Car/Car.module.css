@@ -24,6 +24,11 @@ img {
   right: 14px;
 }
 
+.toggleFavoritesIcon:hover,
+.toggleFavoritesIcon:focus {
+  scale: 1.2;
+}
+
 .textContainer {
   margin-bottom: 28px;
 }
