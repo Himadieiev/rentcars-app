@@ -1,24 +1,28 @@
 import { createPortal } from "react-dom";
 import { useEffect } from "react";
+import numeral from "numeral";
 
 import styles from "./Modal.module.css";
-import Button from "../Button/Button";
 
 const modalRoot = document.querySelector("#modal-root");
 
 export default function Modal({ toggleModal, car }) {
   const {
     img,
-    // make,
-    // model,
-    // year,
-    // rentalPrice,
-    // address,
-    // rentalCompany,
-    // type,
-    // id,
-    // accessories,
-    // functionalities,
+    make,
+    model,
+    year,
+    rentalPrice,
+    address,
+    type,
+    id,
+    accessories,
+    functionalities,
+    description,
+    fuelConsumption,
+    engineSize,
+    rentalConditions,
+    mileage,
   } = car;
 
   const handleBackdropClick = (e) => {
@@ -40,6 +44,12 @@ export default function Modal({ toggleModal, car }) {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [toggleModal]);
+
+  const rentalConditionsArr = rentalConditions.split("\n");
+  const functionalitiesStr = functionalities.join(" | ");
+  const accessoriesStr = accessories.join(" | ");
+  const formattedMileage = numeral(mileage).format("0,0");
+  const formattedRentalPrice = rentalPrice.split("$").reverse().join("$");
 
   return createPortal(
     <div className={styles.modalBackdrop} onClick={handleBackdropClick}>
@@ -71,11 +81,56 @@ export default function Modal({ toggleModal, car }) {
         <div className={styles.imgContainer}>
           <img src={img} alt="Car" />
         </div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div>
+          <h2 className={styles.title}>
+            {make}
+            <span className={styles.model}> {model}, </span>
+            {year}
+          </h2>
+          <div className={styles.topList}>
+            <span>{address[1]}</span>
+            <div className={styles.decorLine}></div>
+            <span>{address[2]}</span>
+            <div className={styles.decorLine}></div>
+            <span>Id: {id}</span>
+            <div className={styles.decorLine}></div>
+            <span>Year: {year}</span>
+            <div className={styles.decorLine}></div>
+            <span>Type: {type}</span>
+            <div className={styles.decorLine}></div>
+            <span>Fuel Consumption: {fuelConsumption}</span>
+            <div className={styles.decorLine}></div>
+            <span>Engine Size: {engineSize}</span>
+          </div>
+          <p className={styles.description}>{description}</p>
+        </div>
+        <div>
+          <h3 className={styles.subtitle}>Accessories and functionalities:</h3>
+          <div className={styles.accessories}>{accessoriesStr}</div>
+          <div className={styles.functionalities}>{functionalitiesStr}</div>
+        </div>
+        <div>
+          <h3 className={styles.subtitle}>Rental Conditions:</h3>
+          <div className={styles.rentalList}>
+            <div className={styles.rentalItem}>
+              <span>{rentalConditionsArr[0]}</span>
+            </div>
+            <div className={styles.rentalItem}>{rentalConditionsArr[1]}</div>
+            <div className={styles.rentalItem}>{rentalConditionsArr[2]}</div>
+            <div className={styles.rentalItem}>
+              <span>Mileage: </span>
+              <span className={styles.mileage}>{formattedMileage}</span>
+            </div>
+            <div className={styles.rentalItem}>
+              <span>Price: </span>
+              <span className={styles.price}>{formattedRentalPrice}</span>
+            </div>
+          </div>
+        </div>
         <div className={styles.btnContainer}>
-          <Button>Rental car</Button>
+          <a className={styles.link} href="tel:+380730000000">
+            Rental car
+          </a>
         </div>
       </div>
     </div>,

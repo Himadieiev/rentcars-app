@@ -4,7 +4,7 @@ import styles from "./Car.module.css";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 
-const Car = ({ car }) => {
+const Car = ({ car, setFavoritesCars, favoritesCars }) => {
   const {
     img,
     make,
@@ -15,8 +15,6 @@ const Car = ({ car }) => {
     rentalCompany,
     type,
     id,
-    accessories,
-    functionalities,
   } = car;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,11 +23,32 @@ const Car = ({ car }) => {
     setIsModalOpen((prevState) => !prevState);
   };
 
+  const toggleFavorite = (car) => {
+    if (setFavoritesCars && favoritesCars) {
+      setFavoritesCars((prevFavorites) => {
+        const isCarInFavorites = prevFavorites.some(
+          (favoriteCar) => favoriteCar.id === car.id
+        );
+
+        if (isCarInFavorites) {
+          return prevFavorites.filter(
+            (favoriteCar) => favoriteCar.id !== car.id
+          );
+        } else {
+          return [...prevFavorites, car];
+        }
+      });
+    }
+  };
+
   return (
     <div className={styles.carContainer}>
       <div className={styles.imgContainer}>
         <img src={img} alt="Car" />
-        <button className={styles.toggleFavoritesBtn}>
+        <button
+          className={styles.toggleFavoritesBtn}
+          onClick={() => toggleFavorite(car)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -53,15 +72,15 @@ const Car = ({ car }) => {
         <div className={styles.topTextContainer}>
           <div>
             <span>{make} </span>
-            <span>{model}, </span>
+            <span className={styles.model}>{model}, </span>
             <span>{year}</span>
           </div>
           <p>{rentalPrice}</p>
         </div>
         <div className={styles.bottomTextContainer}>
-          <span>{address}</span>
+          <span>{address[1]}</span>
           <div className={styles.decorLine}></div>
-          <span>{address}</span>
+          <span>{address[2]}</span>
           <div className={styles.decorLine}></div>
           <span>{rentalCompany}</span>
           <div className={styles.decorLine}></div>
@@ -70,10 +89,6 @@ const Car = ({ car }) => {
           <span>{model}</span>
           <div className={styles.decorLine}></div>
           <span>{id}</span>
-          <div className={styles.decorLine}></div>
-          <span>{accessories}</span>
-          <div className={styles.decorLine}></div>
-          <span>{functionalities}</span>
         </div>
       </div>
       <div className={styles.btnContainer} onClick={toggleModal}>

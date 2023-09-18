@@ -6,7 +6,7 @@ import CarsList from "../../components/CarsList/CarsList";
 import { fetchCars } from "../../services/apiCars";
 import Loader from "../../components/Loader/Loader";
 
-const Catalog = () => {
+const Catalog = ({ setFavoritesCars, favoritesCars }) => {
   const [cars, setCars] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -35,7 +35,15 @@ const Catalog = () => {
   return (
     <main className={`${styles.catalog} container`}>
       <FilterForm />
-      {!cars || cars.length === 0 ? <Loader /> : <CarsList cars={cars} />}
+      {!cars || cars.length === 0 ? (
+        <Loader />
+      ) : (
+        <CarsList
+          cars={cars}
+          setFavoritesCars={setFavoritesCars}
+          favoritesCars={favoritesCars}
+        />
+      )}
 
       {cars.length !== 0 && cars.length < maxNumberCars && (
         <button className={styles.loadMoreBtn} onClick={loadMore}>
