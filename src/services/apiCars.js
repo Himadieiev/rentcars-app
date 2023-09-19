@@ -10,12 +10,3 @@ export const fetchCars = async (page) => {
     throw e.message;
   }
 };
-
-export const getOneCar = async (id) => {
-  try {
-    const response = await axios.get(`/cars/${id}`);
-    return response.data;
-  } catch (e) {
-    throw e.message;
-  }
-};

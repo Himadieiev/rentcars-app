@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import styles from "./Favorites.module.css";
 import FilterForm from "../../components/FilterForm/FilterForm";
 import CarsList from "../../components/CarsList/CarsList";
 import { NavLink } from "react-router-dom";
+import { useFavoritesContext } from "../../context/FavoritesContext";
 
-const Favorites = ({ favoritesCars, setFavoritesCars }) => {
+const Favorites = () => {
+  const { favoritesCars, setFavoritesCars } = useFavoritesContext();
+
+  useEffect(() => {
+    const storedFavoritesCars = JSON.parse(
+      localStorage.getItem("favoritesCars")
+    );
+
+    if (storedFavoritesCars) {
+      setFavoritesCars(storedFavoritesCars);
+    }
+  }, [setFavoritesCars]);
+
   return (
     <main className={`${styles.favorites} container`}>
       {favoritesCars.length !== 0 && <FilterForm />}
