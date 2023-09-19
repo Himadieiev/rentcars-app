@@ -10,6 +10,7 @@
 .brandInputContainer {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .label {
@@ -48,6 +49,7 @@
 .priceInputContainer {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .priceInput {
@@ -126,4 +128,34 @@
 .searchBtnContainer {
   height: 48px;
   width: 136px;
+}
+
+.brandFilter {
+  position: absolute;
+  display: inline-flex;
+  width: 224px;
+  height: 272px;
+  padding: 14px 8px 14px 18px;
+  justify-content: flex-end;
+  align-items: flex-start;
+  border-radius: 14px;
+  border: 1px solid var(--third-bg-color);
+  top: 80px;
+  z-index: 2;
+  background-color: var(--modal-bg-color);
+}
+
+.priceFilter {
+  position: absolute;
+  display: inline-flex;
+  width: 125px;
+  height: 188px;
+  padding: 14px 8px 14px 18px;
+  justify-content: flex-end;
+  align-items: flex-start;
+  border-radius: 14px;
+  border: 1px solid var(--third-bg-color);
+  top: 80px;
+  z-index: 2;
+  background-color: var(--modal-bg-color);
 }

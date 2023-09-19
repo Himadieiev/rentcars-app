@@ -23,5 +23,5 @@ This web application allows you to rent cars in Ukraine and view information abo
 
 1. Clone the repository to your computer.
 2. Install dependencies using the command: `npm install`.
-3. Start the project with the command: npm start.
+3. Start the project with the command: `npm start`.
 4. Open http://localhost:3000 in your web browser.
