@@ -3,7 +3,7 @@
   min-height: calc(100vh - 180px);
 }
 
-.slider {
+.sliderContainer {
   position: relative;
   height: 659px;
   width: 1280px;
@@ -11,9 +11,9 @@
   margin-right: auto;
 }
 
-.img {
+img {
   box-shadow: 0 0 20px var(--third-bg-color);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .textBlock {
@@ -30,8 +30,8 @@
   background-color: var(--backdrop-bg-color);
   top: 16px;
   right: 16px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .textBlock.visible {
@@ -44,7 +44,7 @@
 .secondText {
   font-weight: 400;
   font-size: 25px;
-  color: rgb(177, 177, 185);
+  color: var(--fifth-text-color);
   margin-top: 50px;
 }
 
@@ -57,4 +57,34 @@
 .link:hover,
 .link:focus {
   color: var(--hover-focus-color);
+}
+
+.imgContainer {
+  position: relative;
+  height: 659px;
+  width: 1248px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 18px;
+  overflow: hidden;
+}
+
+.textContainer {
+  position: absolute;
+  top: 60px;
+  left: 30px;
+  color: var(--white);
+  transition: left 0.5s ease-in-out;
+}
+
+.mainText {
+  font-weight: 400;
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.text {
+  padding-left: 50px;
+  font-weight: 400;
+  font-size: 35px;
 }

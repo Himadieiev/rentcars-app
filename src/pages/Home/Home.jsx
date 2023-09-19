@@ -32,11 +32,11 @@ const Home = () => {
 
   return (
     <main className={styles.home}>
-      <div className={styles.slider}>
+      <div className={styles.sliderContainer}>
         <Slider
           activeIndex={activeIndex}
           threshHold={100}
-          transition={0.5}
+          transition={1}
           scaleOnDrag={true}
         >
           {images.map(({ url, title }, index) => (
@@ -55,6 +55,18 @@ const Home = () => {
               <NavLink to="/catalog">Catalog Page</NavLink>
             </span>
           </div>
+        </div>
+      </div>
+
+      <div className={styles.imgContainer}>
+        <img
+          src="https://res.cloudinary.com/doj7dp4cj/image/upload/v1695133327/8_o41dr6.jpg"
+          alt="Car"
+        />
+        <div className={styles.textContainer}>
+          <p className={styles.mainText}>WELCOME</p>
+          <p className={styles.text}>RENT THE CAR</p>
+          <p className={styles.text}>OF YOUR DREAMS</p>
         </div>
       </div>
     </main>
