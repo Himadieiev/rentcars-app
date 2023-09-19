@@ -7,8 +7,7 @@
   align-items: center;
   justify-content: center;
   gap: 60px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  height: 80px;
 }
 
 .logo {

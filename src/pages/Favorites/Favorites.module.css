@@ -1,0 +1,29 @@
+.favorites {
+  min-height: calc(100vh - 180px);
+}
+
+.infoTextTop {
+  display: flex;
+  justify-content: center;
+  padding: 70px;
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.infoTextBottom {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 30px;
+}
+
+.link {
+  color: var(--blue);
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.link:hover,
+.link:focus {
+  color: var(--hover-focus-color);
+}

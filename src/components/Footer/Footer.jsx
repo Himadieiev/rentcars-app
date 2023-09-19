@@ -17,7 +17,7 @@ const Footer = () => {
         <div className={styles.rights}>
           <span className={styles.rightsText}>Developed by </span>
           <a
-            href="https://www.linkedin.com/in/ruslan-himadieiev-32416b271/"
+            href="https://github.com/Himadieiev"
             target="_blank"
             rel="noreferrer"
             className={styles.rightsLink}
