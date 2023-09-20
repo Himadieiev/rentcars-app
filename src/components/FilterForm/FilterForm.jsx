@@ -1,11 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./FilterForm.module.css";
 import Button from "../Button/Button";
+import { getAllCars } from "../../services/apiCars";
 
 const FilterForm = () => {
   const [isBrandFilterMenuOpen, setIsBrandFilterMenuOpen] = useState(false);
   const [isPriceFilterMenuOpen, setIsPriceFilterMenuOpen] = useState(false);
+  const [allCars, setAllCars] = useState([]);
+  const [selectedBrand, setSelectedBrand] = useState("");
+  const [selectedPrice, setSelectedPrice] = useState("");
+  const [mileageFrom, setMileageFrom] = useState("");
+  const [mileageTo, setMileageTo] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const cars = await getAllCars();
+
+        if (cars.length > 0) {
+          setAllCars((prevCars) => [...prevCars, ...cars]);
+        }
+      } catch (e) {
+        throw e.message;
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const toggleBrandMenu = (e) => {
     e.preventDefault();
@@ -19,6 +41,30 @@ const FilterForm = () => {
     setIsPriceFilterMenuOpen((prevState) => !prevState);
   };
 
+  const handleBrandItemClick = (make) => {
+    setSelectedBrand(make);
+    setIsBrandFilterMenuOpen(false);
+  };
+
+  const handlePriceItemClick = (price) => {
+    setSelectedPrice(price);
+    setIsPriceFilterMenuOpen(false);
+  };
+
+  const handleMileageFromChange = (e) => {
+    const formattedValue = e.target.value
+      .replace(/\D/g, "")
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    setMileageFrom(formattedValue);
+  };
+
+  const handleMileageToChange = (e) => {
+    const formattedValue = e.target.value
+      .replace(/\D/g, "")
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    setMileageTo(formattedValue);
+  };
+
   return (
     <form className={styles.form}>
       <div className={styles.brandInputContainer}>
@@ -30,6 +76,8 @@ const FilterForm = () => {
           className={styles.brandInput}
           type="text"
           placeholder="Enter the text"
+          value={selectedBrand}
+          readOnly
         />
         <button className={styles.brandInputBtn} onClick={toggleBrandMenu}>
           {!isBrandFilterMenuOpen ? (
@@ -68,7 +116,25 @@ const FilterForm = () => {
             </svg>
           )}
         </button>
-        {isBrandFilterMenuOpen && <div className={styles.brandFilter}></div>}
+        {isBrandFilterMenuOpen && (
+          <div className={styles.brandFilterContainer}>
+            <div className={styles.brandFilter}>
+              <ul className={styles.brandList}>
+                {Array.from(new Set(allCars.map((car) => car.make))).map(
+                  (make) => (
+                    <li
+                      className={styles.brandItem}
+                      key={make}
+                      onClick={() => handleBrandItemClick(make)}
+                    >
+                      {make}
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
       <div className={styles.priceInputContainer}>
         <label htmlFor="price" className={styles.label}>
@@ -78,8 +144,11 @@ const FilterForm = () => {
           id="price"
           className={styles.priceInput}
           type="text"
-          placeholder="To $"
+          placeholder="$"
+          value={selectedPrice ? `${selectedPrice}$` : ""}
+          readOnly
         />
+        <span className={styles.priceTextTo}>To</span>
         <button className={styles.priceInputBtn} onClick={togglePriceMenu}>
           {!isPriceFilterMenuOpen ? (
             <svg
@@ -117,18 +186,51 @@ const FilterForm = () => {
             </svg>
           )}
         </button>
-        {isPriceFilterMenuOpen && <div className={styles.priceFilter}></div>}
+        {isPriceFilterMenuOpen && (
+          <div className={styles.priceFilterContainer}>
+            <div className={styles.priceFilter}>
+              <ul className={styles.priceList}>
+                {(() => {
+                  const prices = [];
+                  for (let price = 10; price <= 300; price += 10) {
+                    prices.push(
+                      <li
+                        className={styles.priceItem}
+                        key={price}
+                        onClick={() => handlePriceItemClick(price)}
+                      >
+                        {price}
+                      </li>
+                    );
+                  }
+                  return prices;
+                })()}
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
       <div className={styles.mileAgeContainer}>
         <div className={styles.fromInputContainer}>
           <label htmlFor="mileage" className={styles.label}>
             Сar mileage / km
           </label>
-          <input id="mileage" className={styles.mileageFromInput} type="text" />
+          <input
+            id="mileage"
+            className={styles.mileageFromInput}
+            type="text"
+            value={mileageFrom}
+            onChange={handleMileageFromChange}
+          />
           <span className={styles.textFrom}>From</span>
         </div>
         <div className={styles.toInputContainer}>
-          <input className={styles.mileageToInput} type="text" />
+          <input
+            className={styles.mileageToInput}
+            type="text"
+            value={mileageTo}
+            onChange={handleMileageToChange}
+          />
           <span className={styles.textTo}>To</span>
         </div>
       </div>
