@@ -27,3 +27,7 @@
 .link:focus {
   color: var(--hover-focus-color);
 }
+
+.loader {
+  margin-top: 50px;
+}

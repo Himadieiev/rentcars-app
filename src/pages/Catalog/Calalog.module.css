@@ -19,3 +19,6 @@
 .loadMoreBtn:focus {
   color: var(--hover-focus-color);
 }
+
+.loader {
+}

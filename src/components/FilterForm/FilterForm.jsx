@@ -4,7 +4,7 @@ import styles from "./FilterForm.module.css";
 import Button from "../Button/Button";
 import { getAllCars } from "../../services/apiCars";
 
-const FilterForm = () => {
+const FilterForm = ({ onFilter }) => {
   const [isBrandFilterMenuOpen, setIsBrandFilterMenuOpen] = useState(false);
   const [isPriceFilterMenuOpen, setIsPriceFilterMenuOpen] = useState(false);
   const [allCars, setAllCars] = useState([]);
@@ -12,6 +12,19 @@ const FilterForm = () => {
   const [selectedPrice, setSelectedPrice] = useState("");
   const [mileageFrom, setMileageFrom] = useState("");
   const [mileageTo, setMileageTo] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    const filters = {
+      selectedBrand,
+      selectedPrice,
+      mileageFrom,
+      mileageTo,
+    };
+
+    onFilter(filters);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +79,7 @@ const FilterForm = () => {
   };
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSearch}>
       <div className={styles.brandInputContainer}>
         <label htmlFor="brand" className={styles.label}>
           Car brand
@@ -235,7 +248,9 @@ const FilterForm = () => {
         </div>
       </div>
       <div className={styles.searchBtnContainer}>
-        <Button>Search</Button>
+        <Button type="submit">
+          <span>Search</span>
+        </Button>
       </div>
     </form>
   );

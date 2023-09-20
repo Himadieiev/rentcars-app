@@ -10,6 +10,16 @@ const Catalog = () => {
   const [cars, setCars] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const maxNumberCars = 32;
+  const [filters, setFilters] = useState({
+    selectedBrand: "",
+    selectedPrice: "",
+    mileageFrom: "",
+    mileageTo: "",
+  });
+
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,8 +43,12 @@ const Catalog = () => {
 
   return (
     <main className={`${styles.catalog} container`}>
-      <FilterForm />
-      {!cars || cars.length === 0 ? <Loader /> : <CarsList cars={cars} />}
+      <FilterForm onFilter={handleFilterChange} />
+      {!cars || cars.length === 0 ? (
+        <Loader />
+      ) : (
+        <CarsList cars={cars} filters={filters} />
+      )}
 
       {cars.length !== 0 && cars.length < maxNumberCars && (
         <button className={styles.loadMoreBtn} onClick={loadMore}>
