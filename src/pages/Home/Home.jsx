@@ -40,7 +40,14 @@ const Home = () => {
           scaleOnDrag={true}
         >
           {images.map(({ url, title }, index) => (
-            <img className={styles.img} src={url} key={index} alt={title} />
+            <img
+              className={styles.img}
+              src={url}
+              key={index}
+              alt={title}
+              width={1248}
+              height={627}
+            />
           ))}
         </Slider>
         <div
@@ -62,6 +69,8 @@ const Home = () => {
         <img
           src="https://res.cloudinary.com/doj7dp4cj/image/upload/v1695133327/8_o41dr6.jpg"
           alt="Car"
+          width={1248}
+          height={641}
         />
         <div className={styles.textContainer}>
           <p className={styles.mainText}>WELCOME</p>

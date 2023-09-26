@@ -70,7 +70,7 @@ const Car = ({ car }) => {
   return (
     <div className={styles.carContainer}>
       <div className={styles.imgContainer}>
-        <img src={img} alt="Car" />
+        <img src={img} alt="Car" width={274} height={268} />
         <button
           className={styles.toggleFavoritesBtn}
           onClick={() => toggleFavorite(car)}

@@ -9,7 +9,8 @@ import Loader from "../../components/Loader/Loader";
 const Catalog = () => {
   const [cars, setCars] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const maxNumberCars = 32;
+  const [hasMoreData, setHasMoreData] = useState(true);
+
   const [filters, setFilters] = useState({
     selectedBrand: "",
     selectedPrice: "",
@@ -28,6 +29,8 @@ const Catalog = () => {
 
         if (cars.length > 0) {
           setCars((prevCars) => [...prevCars, ...cars]);
+        } else {
+          setHasMoreData(false);
         }
       } catch (e) {
         throw e.message;
@@ -50,7 +53,7 @@ const Catalog = () => {
         <CarsList cars={cars} filters={filters} />
       )}
 
-      {cars.length !== 0 && cars.length < maxNumberCars && (
+      {cars.length !== 0 && hasMoreData && (
         <button className={styles.loadMoreBtn} onClick={loadMore}>
           Load more
         </button>
