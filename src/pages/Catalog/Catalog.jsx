@@ -46,7 +46,7 @@ const Catalog = () => {
 
   return (
     <main className={`${styles.catalog} container`}>
-      <FilterForm onFilter={handleFilterChange} />
+      <FilterForm cars={cars} onFilter={handleFilterChange} />
       {!cars || cars.length === 0 ? (
         <Loader />
       ) : (
@@ -58,6 +58,7 @@ const Catalog = () => {
           Load more
         </button>
       )}
+      {!hasMoreData && <div className={styles.infoText}>No more cars</div>}
     </main>
   );
 };

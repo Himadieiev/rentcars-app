@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import styles from "./FilterForm.module.css";
 import Button from "../Button/Button";
-import { getAllCars } from "../../services/apiCars";
 
-const FilterForm = ({ onFilter }) => {
+const FilterForm = ({ onFilter, cars }) => {
   const [isBrandFilterMenuOpen, setIsBrandFilterMenuOpen] = useState(false);
   const [isPriceFilterMenuOpen, setIsPriceFilterMenuOpen] = useState(false);
-  const [allCars, setAllCars] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedPrice, setSelectedPrice] = useState("");
   const [mileageFrom, setMileageFrom] = useState("");
@@ -25,22 +23,6 @@ const FilterForm = ({ onFilter }) => {
 
     onFilter(filters);
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const cars = await getAllCars();
-
-        if (cars.length > 0) {
-          setAllCars((prevCars) => [...prevCars, ...cars]);
-        }
-      } catch (e) {
-        throw e.message;
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const toggleBrandMenu = (e) => {
     e.preventDefault();
@@ -133,7 +115,7 @@ const FilterForm = ({ onFilter }) => {
           <div className={styles.brandFilterContainer}>
             <div className={styles.brandFilter}>
               <ul className={styles.brandList}>
-                {Array.from(new Set(allCars.map((car) => car.make))).map(
+                {Array.from(new Set(cars.map((car) => car.make))).map(
                   (make) => (
                     <li
                       className={styles.brandItem}

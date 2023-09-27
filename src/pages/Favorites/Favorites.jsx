@@ -42,7 +42,7 @@ const Favorites = () => {
       ) : (
         <>
           {favoritesCars.length !== 0 && (
-            <FilterForm onFilter={handleFilterChange} />
+            <FilterForm cars={favoritesCars} onFilter={handleFilterChange} />
           )}
           {favoritesCars.length === 0 && (
             <>
