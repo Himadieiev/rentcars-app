@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import styles from "./FilterForm.module.css";
 import Button from "../Button/Button";
@@ -10,6 +10,37 @@ const FilterForm = ({ onFilter, cars }) => {
   const [selectedPrice, setSelectedPrice] = useState("");
   const [mileageFrom, setMileageFrom] = useState("");
   const [mileageTo, setMileageTo] = useState("");
+
+  const brandFilterMenuRef = useRef(null);
+  const priceFilterMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        (brandFilterMenuRef.current &&
+          !brandFilterMenuRef.current.contains(e.target)) ||
+        (priceFilterMenuRef.current &&
+          !priceFilterMenuRef.current.contains(e.target))
+      ) {
+        setIsBrandFilterMenuOpen(false);
+        setIsPriceFilterMenuOpen(false);
+      }
+    };
+
+    const handleDocumentClick = (e) => {
+      handleClickOutside(e);
+    };
+
+    if (isBrandFilterMenuOpen || isPriceFilterMenuOpen) {
+      document.addEventListener("mousedown", handleDocumentClick);
+    } else {
+      document.removeEventListener("mousedown", handleDocumentClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleDocumentClick);
+    };
+  }, [isBrandFilterMenuOpen, isPriceFilterMenuOpen]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -112,7 +143,7 @@ const FilterForm = ({ onFilter, cars }) => {
           )}
         </button>
         {isBrandFilterMenuOpen && (
-          <div className={styles.brandFilterContainer}>
+          <div className={styles.brandFilterContainer} ref={brandFilterMenuRef}>
             <div className={styles.brandFilter}>
               <ul className={styles.brandList}>
                 {Array.from(new Set(cars.map((car) => car.make))).map(
@@ -182,7 +213,7 @@ const FilterForm = ({ onFilter, cars }) => {
           )}
         </button>
         {isPriceFilterMenuOpen && (
-          <div className={styles.priceFilterContainer}>
+          <div className={styles.priceFilterContainer} ref={priceFilterMenuRef}>
             <div className={styles.priceFilter}>
               <ul className={styles.priceList}>
                 {(() => {

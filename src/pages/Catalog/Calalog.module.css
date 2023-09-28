@@ -23,6 +23,7 @@
 .infoText {
   display: flex;
   justify-content: center;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 900;
+  color: var(--blue);
 }

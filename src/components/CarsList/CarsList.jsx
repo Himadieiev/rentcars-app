@@ -14,15 +14,46 @@ const CarsList = ({ cars, filters }) => {
     return carPrice <= parseFloat(filters.selectedPrice);
   };
 
+  const isCarWithinMileageRange = (car) => {
+    if (filters.mileageFrom === "" && filters.mileageTo === "") {
+      return true;
+    }
+
+    const mileageFrom =
+      filters.mileageFrom !== ""
+        ? parseFloat(filters.mileageFrom.replace(/,/g, ""))
+        : -Infinity;
+    const mileageTo =
+      filters.mileageTo !== ""
+        ? parseFloat(filters.mileageTo.replace(/,/g, ""))
+        : Infinity;
+
+    return (
+      parseFloat(car.mileage) >= mileageFrom &&
+      parseFloat(car.mileage) <= mileageTo
+    );
+  };
+
   const filteredCars = cars.filter((car) => {
     if (filters.selectedBrand && car.make !== filters.selectedBrand) {
       return false;
     }
 
-    return isCarWithinPriceRange(car);
+    if (filters.selectedPrice !== "") {
+      const carPrice = parseFloat(car.rentalPrice.replace("$", ""));
+      if (carPrice > parseFloat(filters.selectedPrice)) {
+        return false;
+      }
+    }
+
+    return isCarWithinPriceRange(car) && isCarWithinMileageRange(car);
   });
 
-  const hasFilters = filters.selectedBrand || filters.selectedPrice !== "";
+  const hasFilters =
+    filters.selectedBrand ||
+    filters.selectedPrice !== "" ||
+    filters.mileageFrom !== "" ||
+    filters.mileageTo !== "";
 
   return (
     <div>
